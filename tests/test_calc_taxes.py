@@ -15,7 +15,10 @@ def test_calculate_taxes(prices, tax_rate, expected):
     assert calculate_taxes(prices, tax_rate) == expected
 
 
+def test_calculate_taxes_invalid_tax_rate(prices):
+    with pytest.raises(ValueError):
+        calculate_taxes(prices, tax_rate=-1)
 
-
-
-
+def test_calculate_taxes_invalid_price():
+    with pytest.raises(ValueError):
+        calculate_taxes([0, -1], tax_rate=10)
